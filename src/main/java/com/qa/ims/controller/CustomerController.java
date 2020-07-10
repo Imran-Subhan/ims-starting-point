@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.services.CrudServices;
 import com.qa.ims.utils.Utils;
+import java.util.Scanner;
 
 /**
  * Takes in customer details for CRUD functionality
@@ -27,6 +28,10 @@ public class CustomerController implements CrudController<Customer>{
 		return Utils.getInput();
 	}
 	
+	int getintInput() {
+		return Utils.getintInput();
+	}
+	
 	/**
 	 * Reads all customers to the logger
 	 */
@@ -44,6 +49,12 @@ public class CustomerController implements CrudController<Customer>{
 	 */
 	@Override
 	public Customer create() {
+		System.out.println("How many customers");
+		int custadd = getInput();
+				
+		
+		while(custadd <)
+		
 		LOGGER.info("Please enter a first name");
 		String firstName = getInput();
 		LOGGER.info("Please enter a surname");
