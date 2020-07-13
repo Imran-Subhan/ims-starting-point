@@ -13,9 +13,14 @@ import org.apache.log4j.Logger;
 import com.qa.ims.controller.Action;
 import com.qa.ims.controller.CrudController;
 import com.qa.ims.controller.CustomerController;
+import com.qa.ims.controller.ItemController;
 import com.qa.ims.persistence.dao.CustomerDaoMysql;
+import com.qa.ims.persistence.dao.ItemDao;
 import com.qa.ims.persistence.domain.Domain;
+import com.qa.ims.persistence.domain.Item;
+import com.qa.ims.services.CrudServices;
 import com.qa.ims.services.CustomerServices;
+import com.qa.ims.services.ItemServices;
 import com.qa.ims.utils.Utils;
 
 public class Ims {
@@ -46,6 +51,9 @@ public class Ims {
 			doAction(customerController, action);
 			break;
 		case ITEM:
+			ItemController ItemController = new ItemController(
+					new ItemServices(new ItemDao(username, password)));
+			doAction(ItemController, action);
 			break;
 		case ORDER:
 			break;
