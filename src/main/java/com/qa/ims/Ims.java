@@ -14,11 +14,14 @@ import com.qa.ims.controller.Action;
 import com.qa.ims.controller.CrudController;
 import com.qa.ims.controller.CustomerController;
 import com.qa.ims.controller.ItemController;
+import com.qa.ims.controller.BasketController;
 import com.qa.ims.persistence.dao.CustomerDaoMysql;
 import com.qa.ims.persistence.dao.ItemDao;
+import com.qa.ims.persistence.dao.BasketDao;
 import com.qa.ims.persistence.domain.Domain;
 import com.qa.ims.services.CustomerServices;
 import com.qa.ims.services.ItemServices;
+import com.qa.ims.services.BasketServices;
 
 import com.qa.ims.utils.Utils;
 
@@ -54,7 +57,10 @@ public class Ims {
 					new ItemServices(new ItemDao(username, password)));
 			doAction(ItemController, action);
 			break;
-		case ORDER:
+		case BASKET: 
+			BasketController BasketController= new BasketController(
+					new BasketServices(new BasketDao(username, password)));
+			doAction(BasketController, action);
 			break;
 		case STOP:
 			break;

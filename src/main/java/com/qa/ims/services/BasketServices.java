@@ -25,8 +25,8 @@ public class BasketServices implements CrudServices<Basket> {
 			return BasketDao.update(basket);
 		}
 
-		public void delete(Long orderitemid) {
-			BasketDao.delete(orderitemid);
+		public void delete(Long orderitemsid) {
+			BasketDao.delete(orderitemsid);
 		}
 
 	}

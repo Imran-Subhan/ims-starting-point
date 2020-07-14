@@ -85,6 +85,7 @@ public class BasketController implements CrudController<Basket> {
 		LOGGER.info("Please enter the id of the product you would like to delete");
 		Long productid = Long.valueOf(getInput());
 		BasketService.delete(productid);
+		LOGGER.info("Basket field deleted");
 	}
 	
 }

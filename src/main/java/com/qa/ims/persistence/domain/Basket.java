@@ -11,7 +11,6 @@ public class Basket {
 
 
 	public Basket(Long orderitemsid, Long orderid, Long customerid, Long productid, Long quantity, Double price) {
-		super();
 		this.orderitemsid = orderitemsid;
 		this.orderid = orderid;
 		this.customerid = customerid;
@@ -25,7 +24,6 @@ public class Basket {
 
 
 	public Basket(Long orderid, Long customerid, Long productid, Long quantity, Double price) {
-		super();
 		this.orderid = orderid;
 		this.customerid = customerid;
 		this.productid = productid;
@@ -98,7 +96,7 @@ public class Basket {
 
 
 	public String toString() {
-		return "orderitemsid: " + orderitemsid + "orderid:" + orderid + " customerid" + customerid + "productid" + productid + "quantity" + quantity + "price" + price;
+		return "orderitemsid: " + orderitemsid + " orderid: " + orderid + " customerid: " + customerid + " productid: " + productid + " quantity: " + quantity + " price: " + price;
 	}
 	
 }
