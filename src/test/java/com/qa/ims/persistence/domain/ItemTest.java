@@ -31,8 +31,13 @@ public class ItemTest {
 		item.setProductName(null);
 		assertNull(item.getProductName());
 		item.setPrice(0);
-		assertNull(item.getPrice());
+		assertNotNull(item.getPrice());
 		
 	}
 		
+	@Test
+	public void toStringTest() {
+		String toString = "productid: 2 product name: top price: 1";
+		assertEquals(toString, item.toString());
+	}
 	}
