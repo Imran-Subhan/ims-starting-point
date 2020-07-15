@@ -68,6 +68,7 @@ public class Ims {
 			doAction(BasketController, action);
 			break;
 		case STOP:
+			System.exit(0);
 			i = false;
 			break;
 		default:
