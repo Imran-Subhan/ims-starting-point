@@ -36,6 +36,10 @@ public class Ims {
 		String password = Utils.getInput();
 
 		init(username, password);
+		
+		boolean i = true;
+		
+		while(i) {
 
 		LOGGER.info("Which entity would you like to use?");
 		Domain.printDomains();
@@ -56,6 +60,7 @@ public class Ims {
 			ItemController ItemController = new ItemController(
 					new ItemServices(new ItemDao(username, password)));
 			doAction(ItemController, action);
+			System.out.println("             ");
 			break;
 		case BASKET: 
 			BasketController BasketController= new BasketController(
@@ -63,9 +68,11 @@ public class Ims {
 			doAction(BasketController, action);
 			break;
 		case STOP:
+			i = false;
 			break;
 		default:
 			break;
+		}
 		}
 
 	}

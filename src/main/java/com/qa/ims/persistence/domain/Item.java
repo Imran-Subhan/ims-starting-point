@@ -44,7 +44,7 @@ public class Item {
 	}
 
 	public String toString() {
-		return "productid:" + productid + " product name:" + productName + " price:" + price;
+		return "productid: " + productid + " product name: " + productName + " price: " + price;
 	}
 
 //	@Override
