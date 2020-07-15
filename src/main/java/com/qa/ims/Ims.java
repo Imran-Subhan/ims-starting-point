@@ -45,6 +45,9 @@ public class Ims {
 		Domain.printDomains();
 
 		Domain domain = Domain.getDomain();
+		if (domain.name().equalsIgnoreCase("stop")) {
+			System.exit(0); }
+			else {
 		LOGGER.info("What would you like to do with " + domain.name().toLowerCase() + ":");
 
 		Action.printActions();
@@ -74,6 +77,7 @@ public class Ims {
 		default:
 			break;
 		}
+			}
 		}
 
 	}
