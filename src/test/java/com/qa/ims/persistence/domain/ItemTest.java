@@ -26,7 +26,13 @@ public class ItemTest {
 		assertNotNull(item.getProductName());
 		assertNotNull(item.getPrice());
 
-		
+		item.setProductid(null);
+		assertNull(item.getProductid());
+		item.setProductName(null);
+		assertNull(item.getProductName());
+		item.setPrice(0);
+		assertNull(item.getPrice());
 		
 	}
-}
+		
+	}
