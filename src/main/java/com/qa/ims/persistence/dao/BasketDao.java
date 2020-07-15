@@ -123,7 +123,8 @@ public class BasketDao implements Dao<Basket> {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update items set orderid ='" + basket.getOrderid() + "', customerid ='"
-					+ basket.getCustomerid() +  "' where id =" + basket.getProductid());
+					+ basket.getCustomerid() + "', productid ='" + basket.getProductid() + "', Quantity= '" +
+					basket.getQuantity() + ",' price = '" + basket.getPrice() + "' where productid =" + basket.getProductid());
 			return readBasket(basket.getProductid());
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
