@@ -89,11 +89,13 @@ public class BasketDao implements Dao<Basket> {
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("insert into basket(orderid, customerid, productid, quantity, price) values('" + basket.getOrderid()
 			+ "','" + basket.getCustomerid() + "','" + basket.getProductid() + "','" + basket.getQuantity() + "','" + basket.getPrice() + "')");
+			statement.executeUpdate("");
 			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
 		}
+		
 		return null;
 	}
 	}

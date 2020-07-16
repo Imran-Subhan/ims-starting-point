@@ -54,6 +54,7 @@ public class BasketController implements CrudController<Basket> {
 		Double price = Double.valueOf(getInput());
 		Basket basket = BasketService.create(new Basket(orderid, customerid, productid, quantity, price));
 		LOGGER.info("Item added to basket");
+		
 		return basket;
 	}
 

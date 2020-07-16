@@ -36,6 +36,7 @@ public class CustomerController implements CrudController<Customer>{
 		for(Customer customer: customers) {
 			LOGGER.info(customer.toString());
 		}
+		System.out.println("        ");
 		return customers;
 	}
 
@@ -50,6 +51,7 @@ public class CustomerController implements CrudController<Customer>{
 		String surname = getInput();
 		Customer customer = customerService.create(new Customer(firstName, surname));
 		LOGGER.info("Customer created");
+		System.out.println("        ");
 		return customer;
 	}
 
@@ -66,6 +68,7 @@ public class CustomerController implements CrudController<Customer>{
 		String surname = getInput();
 		Customer customer = customerService.update(new Customer(id, firstName, surname));
 		LOGGER.info("Customer Updated");
+		System.out.println("        ");
 		return customer;
 	}
 
@@ -77,6 +80,8 @@ public class CustomerController implements CrudController<Customer>{
 		LOGGER.info("Please enter the id of the customer you would like to delete");
 		Long id = Long.valueOf(getInput());
 		customerService.delete(id);
+		LOGGER.info("Customer Deleted");
+		System.out.println("        ");
 	}
 	
 }
