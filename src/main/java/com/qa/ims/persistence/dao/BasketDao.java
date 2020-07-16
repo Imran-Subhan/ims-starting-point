@@ -101,7 +101,7 @@ public class BasketDao implements Dao<Basket> {
 	public Basket readBasket(Long orderid) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM items where orderid = " + orderid + ";");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM basket where orderid = '" + orderid + "';");) {
 			resultSet.next();
 			return BasketFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -122,10 +122,10 @@ public class BasketDao implements Dao<Basket> {
 	public Basket update(Basket basket) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("update items set orderid ='" + basket.getOrderid() + "', customerid ='"
+			statement.executeUpdate("UPDATE basket set productid ='" + basket.getProductid()+ "', customerid ='"
 					+ basket.getCustomerid() + "', productid ='" + basket.getProductid() + "', Quantity= '" +
-					basket.getQuantity() + "', price = '" + basket.getPrice() + "' where productid =" + basket.getProductid() + ";");
-			return readBasket(basket.getProductid());
+					basket.getQuantity() + "', price = '" + basket.getPrice() + "' WHERE orderid = '" + basket.getOrderid() + "';");
+			return readBasket(basket.getOrderid());
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());

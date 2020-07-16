@@ -62,19 +62,22 @@ public class BasketController implements CrudController<Basket> {
 	 */
 	@Override
 	public Basket update() {
-		LOGGER.info("Please enter the id of the product you would like to update");
-		Long productid = Long.valueOf(getInput());
-		LOGGER.info("Please enter a orderID");
+		LOGGER.info("Please enter which orderID you want to update");
 		Long orderid = Long.valueOf(getInput());
-		LOGGER.info("Please enter a customerID");
+		LOGGER.info("Please enter an updated productid ");
+		Long productid = Long.valueOf(getInput());
+		LOGGER.info("Please enter an updated customerID");
 		Long customerid = Long.valueOf(getInput());
-		LOGGER.info("Please enter a quantity");
+		LOGGER.info("Please enter an updated quantity");
 		Long quantity = Long.valueOf(getInput());
-		LOGGER.info("Please enter a price");
+		LOGGER.info("Please enter an updated price");
 		Double price = Double.valueOf(getInput());
+		
 		Basket basket = BasketService.update(new Basket(orderid, customerid, productid, quantity, price));
 		LOGGER.info("Basket Updated");
+		System.out.println("            ");
 		return basket;
+		
 	}
 
 	/**
