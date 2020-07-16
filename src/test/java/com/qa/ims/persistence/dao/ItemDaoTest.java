@@ -11,16 +11,26 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.qa.ims.Ims;
 import com.qa.ims.controller.ItemController;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.services.ItemServices;
+import com.qa.ims.persistence.dao.ItemDao;
 
+import com.qa.ims.utils.Utils;
+
+
+@RunWith(MockitoJUnitRunner.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ItemDaoTest {
 	
 	
@@ -91,23 +101,23 @@ public class ItemDaoTest {
 		items.add(new Item(2L, "Jeans", 25.5));
 		items.add(new Item(3L, "Socks", 2.5));
 
-		assertEquals(customers, customerDaoMysql.readAll());
+		assertEquals(items, ItemDao.readAll());
 	}
 
 	@Test
 	public void dReadLatestTest() {
-		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
+		ItemDao ItemDao = new ItemDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
-		Customer customer = new Customer(3L, "Bob", "Perry");
-		assertEquals(customer, customerDaoMysql.readLatest());
+		Item item = new Item(3L, "Socks", 2.5);
+		assertEquals(item, ItemDao.readLatest());
 	}
 
 	@Test
-	public void eReadCustomerTest() {
-		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
+	public void eReadItemTest() {
+		ItemDao ItemDao = new ItemDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
-		Customer customer = new Customer(2L, "James", "Peach");
-		assertEquals(customer, customerDaoMysql.readCustomer(2L));
+		Item item = new Item(2L, "Jeans", 25.5);
+		assertEquals(item, ItemDao.readItem(2L));
 	}
 
 //
@@ -116,13 +126,13 @@ public class ItemDaoTest {
 //	 */
 	@Test
 	public void fUpdateTest() {
-		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
+		ItemDao ItemDao = new ItemDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
-		Long id = 1L;
-		String firstName = "Vinesh";
-		String surname = "Ghela";
-		Customer customer = new Customer((id), firstName, surname);
-		assertEquals(customer, customerDaoMysql.update(customer));
+		Long productid = 1L;
+		String productName = "Shirt";
+		Double price = 7.0;
+		Item item = new Item((productid), productName, price);
+		assertEquals(item, ItemDao.update(item));
 	}
 
 //	/**
@@ -130,14 +140,14 @@ public class ItemDaoTest {
 //	 */
 	@Test
 	public void gDeleteTest() {
-		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(
+		ItemDao ItemDao = new ItemDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
-		String id = "3";
-		customerDaoMysql.delete(Long.parseLong(id));
-		List<Customer> customers = new ArrayList<>();
-		customers.add(new Customer(1L, "Vinesh", "Ghela"));
-		customers.add(new Customer(2L, "James", "Peach"));
-		assertEquals(customers, customerDaoMysql.readAll());
+		String productid = "3";
+		ItemDao.delete(Long.parseLong(productid));
+		List<Item> items = new ArrayList<>();
+		items.add(new Item(1L, "Shirt", 7.0));
+		items.add(new Item(2L, "Jeans", 25.5));
+		assertEquals(items, ItemDao.readAll());
 	}
 
 	@AfterClass
@@ -145,7 +155,7 @@ public class ItemDaoTest {
 
 		try (Connection connection = DriverManager.getConnection(jdbcurl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("drop table customers");
+			statement.executeUpdate("drop table Item");
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
