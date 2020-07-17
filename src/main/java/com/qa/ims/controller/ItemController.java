@@ -11,7 +11,7 @@ import com.qa.ims.utils.Utils;
 
 public class ItemController implements CrudController<Item> {
 	
-	public static final Logger LOGGER = Logger.getLogger(CustomerController.class);
+	public static final Logger LOGGER = Logger.getLogger(ItemController.class);
 	
 	private CrudServices<Item> ItemService;
 	
@@ -24,6 +24,13 @@ public class ItemController implements CrudController<Item> {
 		return Utils.getInput();
 	}
 	
+	 Integer getIntInput() {
+		return Utils.getintInput();
+	 }
+	
+	Long getLonginput() {
+		return Utils.getLongInput();
+	}
 	/**
 	 * Reads all customers to the logger
 	 */

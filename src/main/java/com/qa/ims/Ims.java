@@ -18,6 +18,7 @@ import com.qa.ims.controller.BasketController;
 import com.qa.ims.persistence.dao.CustomerDaoMysql;
 import com.qa.ims.persistence.dao.ItemDao;
 import com.qa.ims.persistence.dao.BasketDao;
+import com.qa.ims.persistence.domain.Basket;
 import com.qa.ims.persistence.domain.Domain;
 import com.qa.ims.services.CustomerServices;
 import com.qa.ims.services.ItemServices;
@@ -47,6 +48,7 @@ public class Ims {
 		Domain domain = Domain.getDomain();
 		if (domain.name().equalsIgnoreCase("stop")) {
 			System.exit(0); }
+				
 			else {
 		LOGGER.info("What would you like to do with " + domain.name().toLowerCase() + ":");
 
@@ -70,9 +72,8 @@ public class Ims {
 					new BasketServices(new BasketDao(username, password)));
 			doAction(BasketController, action);
 			break;
+		case ORDER:
 		case STOP:
-			System.exit(0);
-			i = false;
 			break;
 		default:
 			break;
@@ -81,6 +82,7 @@ public class Ims {
 		}
 
 	}
+
 
 	public void doAction(CrudController<?> crudController, Action action) {
 		switch (action) {

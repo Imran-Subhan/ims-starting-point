@@ -15,7 +15,7 @@ import com.qa.ims.utils.Utils;
 
 public class BasketDao implements Dao<Basket> {
 	
-	public static final Logger LOGGER = Logger.getLogger(ItemDao.class);
+	public static final Logger LOGGER = Logger.getLogger(BasketDao.class);
 
 	private String jdbcConnectionUrl;
 	private String username;
@@ -61,6 +61,7 @@ public class BasketDao implements Dao<Basket> {
 		} catch (SQLException e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
+			
 		}
 		return new ArrayList<>();
 	}
@@ -89,7 +90,7 @@ public class BasketDao implements Dao<Basket> {
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("insert into basket(orderid, customerid, productid, quantity, price) values('" + basket.getOrderid()
 			+ "','" + basket.getCustomerid() + "','" + basket.getProductid() + "','" + basket.getQuantity() + "','" + basket.getPrice() + "')");
-			statement.executeUpdate("");
+			
 			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -112,6 +113,22 @@ public class BasketDao implements Dao<Basket> {
 		}
 		return null;
 	}
+	
+	public Basket orderTotal(Long orderid) {
+		
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT SUM(price) FROM basket where orderid = '" + orderid + "';");) {
+			resultSet.next();
+			return BasketFromResultSet(resultSet);
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+		
+	}
+
 
 	/**
 	 * Updates a customer in the database

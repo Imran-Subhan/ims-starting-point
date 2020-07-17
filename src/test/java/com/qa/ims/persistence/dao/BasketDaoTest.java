@@ -1,5 +1,4 @@
 package com.qa.ims.persistence.dao;
-
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
@@ -21,24 +20,24 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.qa.ims.Ims;
-import com.qa.ims.controller.ItemController;
-import com.qa.ims.persistence.domain.Item;
-import com.qa.ims.services.ItemServices;
-import com.qa.ims.persistence.dao.ItemDao;
-
+import com.qa.ims.controller.BasketController;
+import com.qa.ims.controller.CustomerController;
+import com.qa.ims.persistence.dao.BasketDao;
+import com.qa.ims.persistence.domain.Basket;
+import com.qa.ims.persistence.domain.Customer;
+import com.qa.ims.services.BasketServices;
+import com.qa.ims.services.CustomerServices;
 import com.qa.ims.utils.Utils;
-
 
 @RunWith(MockitoJUnitRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ItemDaoTest {
-	
+public class BasketDaoTest {
 	
 	/**
 	 * The thing I want to fake functionality for
 	 */
 	@Mock
-	private ItemServices itemServices;
+	private CustomerServices customerServices;
 
 	/**
 	 * Spy is used because i want to mock some methods inside the item I'm testing
@@ -47,7 +46,7 @@ public class ItemDaoTest {
 	 */
 	@Spy
 	@InjectMocks
-	private ItemController itemController;
+	private CustomerController customerController;
 
 	public static final Logger LOGGER = Logger.getLogger(Ims.class);
 	static String jdbcurl = "jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC";
@@ -76,48 +75,62 @@ public class ItemDaoTest {
 
 	@Test
 	public void bCreateTest() {
-		ItemDao ItemDao = new ItemDao(
+		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
-		String productName = "Shirt";
-		Double price = 7.0;
-		Item item = new Item(1L, productName, price);
-		String productName2 = "Jeans";
-		Double price2 = 26.0;
-		Item item2 = new Item(2L, productName2, price2);
-		String productName3 = "Socks";
-		Double price3 = 2.0;
-		Item item3 = new Item(3L, productName3, price3);
-		assertEquals(item, ItemDao.create(item));
-		assertEquals(item2, ItemDao.create(item2));
-		assertEquals(item3, ItemDao.create(item3));
+		
+		Long orderitemsid =1L;
+		Long orderid = 1L;
+		Long customerid = 1L ;
+		Long productid = 1L;
+		Long quantity = 1L;
+		Double price = 1.0;
+		Basket basket = new Basket(orderitemsid, orderid, customerid, productid, quantity, price);
+		
+		Long orderid1 = 2L;
+		Long customerid1 = 2L ;
+		Long productid1 = 2L;
+		Long quantity1 = 2L;
+		Double price1 = 2.0;
+		Basket basket1 = new Basket(2L, orderid1, customerid1, productid1, quantity1, price1);
+		
+		Long orderid2 = 3L;
+		Long customerid2 = 3L ;
+		Long productid2 = 3L;
+		Long quantity2 = 3L;
+		Double price2 = 3.0;
+		Basket basket2 = new Basket(3L, orderid2, customerid2, productid2, quantity2, price2);
+		
+		assertEquals(basket, BasketDao.create(basket));
+		assertEquals(basket1, BasketDao.create(basket1));
+		assertEquals(basket2, BasketDao.create(basket2));
 	}
 
 	@Test
 	public void cReadAllTest() {
-		ItemDao ItemDao = new ItemDao(
+		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
-		List<Item> items = new ArrayList<>();
-		items.add(new Item(1L, "Shirt", 7.0));
-		items.add(new Item(2L, "Jeans", 26.0));
-		items.add(new Item(3L, "Socks", 2.0));
+		List<Basket> basket = new ArrayList<>();
+		basket.add(new Basket(1L, 1L, 1L, 1L, 1L, 1.0D));
+		basket.add(new Basket(2L, 2L, 2L, 2L, 2L, 2.0D));
+		basket.add(new Basket(3L, 3L, 3L, 3L, 3L, 3.0D));
 
-		assertEquals(items, ItemDao.readAll());
+		assertEquals(basket, BasketDao.readAll());
 	}
 
 	@Test
 	public void dReadLatestTest() {
-		ItemDao ItemDao = new ItemDao(
+		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
-		Item item = new Item(3L, "Socks", 2.0);
-		assertEquals(item, ItemDao.readLatest());
+		Basket basket = new Basket(2L, 2L, 2L, 2L, 2L, 2.0D);
+		assertEquals(basket, BasketDao.readLatest());
 	}
 
 	@Test
-	public void eReadItemTest() {
-		ItemDao ItemDao = new ItemDao(
+	public void eReadBasketTest() {
+		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
-		Item item = new Item(2L, "Jeans", 26.0);
-		assertEquals(item, ItemDao.readItem(2L));
+		Basket basket = new Basket(2L, 2L, 2L, 2L, 2L, 2.0D);
+		assertEquals(basket, BasketDao.readBasket(2L));
 	}
 
 //
@@ -126,13 +139,16 @@ public class ItemDaoTest {
 //	 */
 	@Test
 	public void fUpdateTest() {
-		ItemDao ItemDao = new ItemDao(
+		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
+		Long orderid = 1L;
+		Long customerid = 1L;
 		Long productid = 1L;
-		String productName = "Shirt";
-		Double price = 7.0;
-		Item item = new Item((productid), productName, price);
-		assertEquals(item, ItemDao.update(item));
+		Long quantity = 1L;
+		Double price = 1.0D;
+
+		Basket basket = new Basket(1L, orderid, customerid, productid, quantity, price);
+		assertEquals(basket, BasketDao.update(basket));
 	}
 
 //	/**
@@ -140,14 +156,14 @@ public class ItemDaoTest {
 //	 */
 	@Test
 	public void gDeleteTest() {
-		ItemDao ItemDao = new ItemDao(
+		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
-		String productid = "3";
-		ItemDao.delete(Long.parseLong(productid));
-		List<Item> items = new ArrayList<>();
-		items.add(new Item(1L, "Shirt", 7.0));
-		items.add(new Item(2L, "Jeans", 26.0));
-		assertEquals(items, ItemDao.readAll());
+		String orderid = "2";
+		BasketDao.delete(Long.parseLong(orderid));
+		List<Basket> basket = new ArrayList<>();
+		basket.add(new Basket(1L, 1L, 1L, 1L, 1L, 1D));
+		basket.add(new Basket(1L, 1L, 1L, 1L, 1L, 1D));
+		assertEquals(basket, BasketDao.readAll());
 	}
 
 	@AfterClass
@@ -155,7 +171,7 @@ public class ItemDaoTest {
 
 		try (Connection connection = DriverManager.getConnection(jdbcurl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("drop table items");
+			statement.executeUpdate("drop table basket");
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());

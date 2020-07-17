@@ -16,6 +16,8 @@ public class Utils {
 	}
 	public static int getintInput() {
 		return SCANNER.nextInt();
-
+	}
+	public static Long getLongInput() {
+		return SCANNER.nextLong();
 }
 }

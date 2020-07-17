@@ -34,6 +34,7 @@ public class BasketController implements CrudController<Basket> {
 		for(Basket Basket: basket) {
 			LOGGER.info(Basket.toString());
 		}
+		System.out.println("        ");
 		return basket;
 	}
 
@@ -54,7 +55,6 @@ public class BasketController implements CrudController<Basket> {
 		Double price = Double.valueOf(getInput());
 		Basket basket = BasketService.create(new Basket(orderid, customerid, productid, quantity, price));
 		LOGGER.info("Item added to basket");
-		
 		return basket;
 	}
 
@@ -86,12 +86,15 @@ public class BasketController implements CrudController<Basket> {
 	 */
 	@Override
 	public void delete() {
-		LOGGER.info("Please enter the id of the product you would like to delete");
-		Long productid = Long.valueOf(getInput());
-		BasketService.delete(productid);
+		LOGGER.info("Please enter the orderitems id you would like to delete");
+		Long orderitemsid = Long.valueOf(getInput());
+		BasketService.delete(orderitemsid);
 		LOGGER.info("Basket field deleted");
 	}
+
+		
 	
-}
+		
+	}
 
 
