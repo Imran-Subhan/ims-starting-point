@@ -14,16 +14,26 @@ import com.qa.ims.controller.Action;
 import com.qa.ims.controller.CrudController;
 import com.qa.ims.controller.CustomerController;
 import com.qa.ims.controller.ItemController;
+<<<<<<< HEAD
 import com.qa.ims.controller.BasketController;
 import com.qa.ims.persistence.dao.CustomerDaoMysql;
 import com.qa.ims.persistence.dao.ItemDao;
 import com.qa.ims.persistence.dao.BasketDao;
 import com.qa.ims.persistence.domain.Basket;
+=======
+import com.qa.ims.persistence.dao.CustomerDaoMysql;
+import com.qa.ims.persistence.dao.ItemDao;
+>>>>>>> refs/remotes/origin/master
 import com.qa.ims.persistence.domain.Domain;
+import com.qa.ims.persistence.domain.Item;
+import com.qa.ims.services.CrudServices;
 import com.qa.ims.services.CustomerServices;
 import com.qa.ims.services.ItemServices;
+<<<<<<< HEAD
 import com.qa.ims.services.BasketServices;
 
+=======
+>>>>>>> refs/remotes/origin/master
 import com.qa.ims.utils.Utils;
 
 public class Ims {
@@ -65,7 +75,10 @@ public class Ims {
 			ItemController ItemController = new ItemController(
 					new ItemServices(new ItemDao(username, password)));
 			doAction(ItemController, action);
+<<<<<<< HEAD
 			System.out.println("             ");
+=======
+>>>>>>> refs/remotes/origin/master
 			break;
 		case BASKET: 
 			BasketController BasketController= new BasketController(

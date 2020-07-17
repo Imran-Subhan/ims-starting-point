@@ -11,7 +11,11 @@ import com.qa.ims.utils.Utils;
 
 public class ItemController implements CrudController<Item> {
 	
+<<<<<<< HEAD
 	public static final Logger LOGGER = Logger.getLogger(ItemController.class);
+=======
+	public static final Logger LOGGER = Logger.getLogger(CustomerController.class);
+>>>>>>> refs/remotes/origin/master
 	
 	private CrudServices<Item> ItemService;
 	
@@ -24,6 +28,7 @@ public class ItemController implements CrudController<Item> {
 		return Utils.getInput();
 	}
 	
+<<<<<<< HEAD
 	 Integer getIntInput() {
 		return Utils.getintInput();
 	 }
@@ -31,6 +36,8 @@ public class ItemController implements CrudController<Item> {
 	Long getLonginput() {
 		return Utils.getLongInput();
 	}
+=======
+>>>>>>> refs/remotes/origin/master
 	/**
 	 * Reads all customers to the logger
 	 */
@@ -53,7 +60,11 @@ public class ItemController implements CrudController<Item> {
 		LOGGER.info("Please enter a price");
 		Double price = Double.valueOf(getInput());
 		Item item = ItemService.create(new Item(productName, price));
+<<<<<<< HEAD
 		LOGGER.info("Item created");
+=======
+		LOGGER.info("Customer created");
+>>>>>>> refs/remotes/origin/master
 		return item;
 	}
 
@@ -64,12 +75,21 @@ public class ItemController implements CrudController<Item> {
 	public Item update() {
 		LOGGER.info("Please enter the id of the product you would like to update");
 		Long productid = Long.valueOf(getInput());
+<<<<<<< HEAD
 		LOGGER.info("Please enter product name");
 		String productName = getInput();
 		LOGGER.info("Please enter a price");
 		Double price = Double.valueOf(getInput());
 		Item item = ItemService.update(new Item(productid, productName, price));
 		LOGGER.info("Item Updated");
+=======
+		LOGGER.info("Please enter a first name");
+		String productName = getInput();
+		LOGGER.info("Please enter a surname");
+		Double price = Double.valueOf(getInput());
+		Item item = ItemService.update(new Item(productid, productName, price));
+		LOGGER.info("Customer Updated");
+>>>>>>> refs/remotes/origin/master
 		return item;
 	}
 

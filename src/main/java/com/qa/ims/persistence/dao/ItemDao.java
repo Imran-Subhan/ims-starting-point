@@ -65,7 +65,11 @@ public class ItemDao implements Dao<Item> {
 	public Item readLatest() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
+<<<<<<< HEAD
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM items ORDER BY productid DESC LIMIT 1;");) {
+=======
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM items ORDER BY productid DESC LIMIT 1");) {
+>>>>>>> refs/remotes/origin/master
 			resultSet.next();
 			return ItemFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -98,7 +102,11 @@ public class ItemDao implements Dao<Item> {
 	public Item readItem(Long productid) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
+<<<<<<< HEAD
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM items where productid = " + productid + ";");) {
+=======
+				ResultSet resultSet = statement.executeQuery("SELECT FROM items where productid = " + productid);) {
+>>>>>>> refs/remotes/origin/master
 			resultSet.next();
 			return ItemFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -120,7 +128,11 @@ public class ItemDao implements Dao<Item> {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update items set productName ='" + item.getProductName() + "', price ='"
+<<<<<<< HEAD
 					+ item.getPrice() + "' where productid =" + item.getProductid() + ";");
+=======
+					+ item.getPrice() + "' where id =" + item.getProductid());
+>>>>>>> refs/remotes/origin/master
 			return readItem(item.getProductid());
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());

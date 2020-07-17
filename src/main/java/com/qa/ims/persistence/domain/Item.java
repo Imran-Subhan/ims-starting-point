@@ -5,7 +5,10 @@ public class Item {
 	private Long productid;
 	private String productName;
 	private Double price;
+<<<<<<< HEAD
 	private String price2;
+=======
+>>>>>>> refs/remotes/origin/master
 
 	public Item(String productName, Double price) {
 		this.productName = productName;
@@ -19,6 +22,10 @@ public class Item {
 	}
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 	public Long getProductid() {
 		return productid;
 	}
@@ -44,6 +51,7 @@ public class Item {
 	}
 
 	public String toString() {
+<<<<<<< HEAD
 		return "productid: " + productid + " product name: " + productName + " price: " + price;
 	}
 
@@ -56,6 +64,20 @@ public class Item {
 //		result = prime * result + ((price == null) ? 0 : price.hashCode());
 //		return result;
 //	}
+=======
+		return "productid:" + productid + " product name:" + productName + " price:" + price;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((productName == null) ? 0 : productName.hashCode());
+		result = prime * result + ((productid == null) ? 0 : productid.hashCode());
+		result = prime * result + ((price == null) ? 0 : price.hashCode());
+		return result;
+	}
+>>>>>>> refs/remotes/origin/master
 
 	@Override
 	public boolean equals(Object obj) {
@@ -84,8 +106,12 @@ public class Item {
 		return true;
 	}
 
+<<<<<<< HEAD
 		
 	}
 
+=======
+}
+>>>>>>> refs/remotes/origin/master
 
 
