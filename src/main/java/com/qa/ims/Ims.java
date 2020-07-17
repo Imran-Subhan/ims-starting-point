@@ -72,7 +72,6 @@ public class Ims {
 					new BasketServices(new BasketDao(username, password)));
 			doAction(BasketController, action);
 			break;
-		case ORDER:
 		case STOP:
 			break;
 		default:
