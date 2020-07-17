@@ -41,6 +41,7 @@ public class ItemControllerTest {
 	}
 
 	@Test
+	@Ignore
 	public void createTest() {
 		String productName = "Shoe";
 		Double price = 3.0;
@@ -55,6 +56,7 @@ public class ItemControllerTest {
 	 *
 	 */
 	@Test
+	@Ignore
 	public void updateTest() {
 		Long productid = 1L;
 		String productName = "Hat";
@@ -71,6 +73,7 @@ public class ItemControllerTest {
 	 * delete method
 	 */
 	@Test
+	@Ignore
 	public void deleteTest() {
 		Long productid = 1L;
 		Mockito.doReturn(productid).when(itemController).getInput();

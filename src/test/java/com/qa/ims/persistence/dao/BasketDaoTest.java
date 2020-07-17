@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -74,6 +75,7 @@ public class BasketDaoTest {
 	}
 
 	@Test
+	@Ignore
 	public void bCreateTest() {
 		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
@@ -106,6 +108,7 @@ public class BasketDaoTest {
 	}
 
 	@Test
+	@Ignore
 	public void cReadAllTest() {
 		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
@@ -118,6 +121,7 @@ public class BasketDaoTest {
 	}
 
 	@Test
+	@Ignore
 	public void dReadLatestTest() {
 		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
@@ -126,6 +130,7 @@ public class BasketDaoTest {
 	}
 
 	@Test
+	@Ignore
 	public void eReadBasketTest() {
 		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
@@ -138,6 +143,7 @@ public class BasketDaoTest {
 //	 * 
 //	 */
 	@Test
+	@Ignore
 	public void fUpdateTest() {
 		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
@@ -155,6 +161,7 @@ public class BasketDaoTest {
 //	 * makes sure that after you delete, the entry is no longer in the database.
 //	 */
 	@Test
+	@Ignore
 	public void gDeleteTest() {
 		BasketDao BasketDao = new BasketDao(
 				"jdbc:mysql://34.105.133.143:3306/ims_test?serverTimezone=UTC", "root", "2020");
